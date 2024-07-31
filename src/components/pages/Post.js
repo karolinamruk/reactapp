@@ -9,7 +9,15 @@ const Post = () => {
 
   return (
     <Container>
-      <h1>{post.title}</h1>
+      <div className="d-flex justify-content-between align-items-center">
+        <h1>{post.title}</h1>
+        <div>
+          <Button variant="primary" as={Link} to={`/post/edit/${post.id}`}>
+            Edit
+          </Button>{' '}
+          <Button variant="danger">Delete</Button>
+        </div>
+      </div>
       <p>
         <strong>Author:</strong> {post.author}
       </p>
@@ -17,12 +25,6 @@ const Post = () => {
         <strong>Published:</strong> {post.publishedDate}
       </p>
       <p>{post.content}</p>
-      <div>
-        <Button variant="primary" as={Link} to={`/post/edit/${post.id}`}>
-          Edit
-        </Button>{' '}
-        <Button variant="danger">Delete</Button>
-      </div>
     </Container>
   );
 };
