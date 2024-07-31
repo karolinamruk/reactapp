@@ -8,6 +8,12 @@ const Home = () => {
 
   return (
     <Container>
+      <div className="d-flex justify-content-between align-items-center mb-4">
+        <h2>All Posts</h2>
+        <Button variant="primary" as={Link} to="/post/add">
+          Add Post
+        </Button>
+      </div>
       <Row>
         {posts.map((post) => (
           <Col key={post.id} md={4} className="mb-4 mx-auto">
