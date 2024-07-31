@@ -7,14 +7,18 @@ export const getPostById = ({ posts }, postId) =>
 // actions
 const createActionName = (actionName) => `app/posts/${actionName}`;
 
-const DELETE_POST = 'app/posts/DELETE_POST';
+const DELETE_POST = createActionName('DELETE_POST');
 
-const CREATE_POST = 'app/posts/CREATE_POST';
+const CREATE_POST = createActionName('ADD_POST');
+
+const EDIT_POST = createActionName('EDIT_POST');
 
 // action creators
 export const deletePost = (id) => ({ type: DELETE_POST, payload: id });
 
 export const addPost = (post) => ({ type: CREATE_POST, payload: post });
+
+export const editPost = (payload) => ({ type: EDIT_POST, payload });
 //reducer
 
 const postsReducer = (statePart = [], action) => {
@@ -24,6 +28,12 @@ const postsReducer = (statePart = [], action) => {
 
     case CREATE_POST:
       return [...statePart, { id: Date.now().toString(), ...action.payload }];
+
+    case EDIT_POST:
+      return statePart.map((post) =>
+        post.id === action.payload.id ? { ...post, ...action.payload } : post
+      );
+
     default:
       return statePart;
   }
